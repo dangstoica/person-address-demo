@@ -1,0 +1,18 @@
+package org.dsc.example.person;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+/**
+ * @author dan.stoica
+ *
+ */
+@SpringBootApplication
+public class PersonInfoApplication
+{
+
+	public static void main(String[] args)
+	{
+		SpringApplication.run(PersonInfoApplication.class, args);
+	}
+}
