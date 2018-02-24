@@ -19,12 +19,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "city")
-@NamedQueries({
-    @NamedQuery(name="City.findAll",
-                query="SELECT c FROM City c"),
-    @NamedQuery(name="City.findByName",
-                query="SELECT c FROM City c WHERE c.name = :name"),
-})
+@NamedQueries({ @NamedQuery(name = "City.findAll", query = "SELECT c FROM City c"),
+		@NamedQuery(name = "City.findByName", query = "SELECT c FROM City c WHERE c.name = :name"), })
 public class City {
 
 	@Id
@@ -64,6 +60,31 @@ public class City {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((cityId == null) ? 0 : cityId.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		City other = (City) obj;
+		if (cityId == null) {
+			if (other.cityId != null)
+				return false;
+		} else if (!cityId.equals(other.cityId))
+			return false;
+		return true;
 	}
 
 }

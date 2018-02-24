@@ -11,7 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
 /**
  * @author dan.stoica
  * @version 1.0
@@ -28,14 +27,14 @@ public class Address {
 
 	@Column(name = "street_name")
 	private String streetName;
-	
+
 	@Column(name = "street_number")
 	private String streetNumber;
-	
+
 	@Column(name = "postal_code")
 	private String postalCode;
-	
-	@ManyToOne(fetch = FetchType.EAGER, cascade= {CascadeType.REFRESH})
+
+	@ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.REFRESH })
 	@JoinColumn(name = "city_id")
 	public City city;
 
@@ -82,6 +81,31 @@ public class Address {
 
 	public void setCity(City city) {
 		this.city = city;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((addressId == null) ? 0 : addressId.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Address other = (Address) obj;
+		if (addressId == null) {
+			if (other.addressId != null)
+				return false;
+		} else if (!addressId.equals(other.addressId))
+			return false;
+		return true;
 	}
 
 }
